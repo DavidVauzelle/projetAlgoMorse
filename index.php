@@ -1,5 +1,64 @@
 <?php
+// Tableau morse --> Français
+$morseAlphabet = [
+    '.-' => 'A',
+    '-...' => 'B',
+    '-.-.' => 'C',
+    '-..' => 'D',
+    '.' => 'E',
+    '..-.' => 'F',
+    '--.' => 'G',
+    '....' => 'H',
+    '..' => 'I',
+    '.---' => 'J',
+    '-.-' => 'K',
+    '.-..' => 'L',
+    '--' => 'M',
+    '-.' => 'N',
+    '---' => 'O',
+    '.--.' => 'P',
+    '--.-' => 'Q',
+    '.-.' => 'R',
+    '...' => 'S',
+    '-' => 'T',
+    '..-' => 'U',
+    '...-' => 'V',
+    '.--' => 'W',
+    '-..-' => 'X',
+    '-.--' => 'Y',
+    '--..' => 'Z',
+    '-----' => 0,
+    '.----' => 1,
+    '..---' => 2,
+    '...--' => 3,
+    '....-' => 4,
+    '.....' => 5,
+    '-....' => 6,
+    '--...' => 7,
+    '---..' => 8,
+    '----.' => 9,
+    '.-.-.-' => '.',
+    '--..--' => ',',
+    '..--..' => '?',
+    '.----.' => '\'',
+    '-.-.-----.' => '!',
+    '-..-.' => '/',
+    '-.--.' => '(',
+    '-.--.-' => ')',
+    '.-...' => '&',
+    '---...' => ':',
+    '-.-.-.' => ';',
+    '-...-' => '=',
+    '.-.-.' => '+',
+    '-....-' => '-',
+    '..--.-' => '_',
+    '.-..-.' => '"',
+    '...-..-' => '$',
+    '.--.-.' => '@',
+    "/" => ' ',
+];
 
+// Tableau Français --> morse
 $alphabetMorse = [
     'A' => '.-',
     'B' => '-...',
@@ -55,7 +114,7 @@ $alphabetMorse = [
     '"' => '.-..-.',
     '$' => '...-..-',
     '@' => '.--.-.',
-    ' ' => "/"
+    ' ' => "/",
 ];
 
 ?>
@@ -71,6 +130,22 @@ $alphabetMorse = [
     <main>
         <?php
 
+        // Traduction d'un code morse en texte Français
+        // Vérification qu'un message à traduire à bien été renseigné
+        if (isset($_POST["messageMorse"]) && !empty($_POST["messageMorse"])) {
+            $code = $_POST['messageMorse'];
+            $codeDecoupe = explode('/', $code);
+
+            print_r($codeDecoupe);
+
+            
+        } else {
+            // echo "Veuillez renseigner un texte à traduire";
+        }
+
+        // -...----..------..-.-./-...-...-..-../...-.-..---....-...-.../-.-.-----.
+
+        // Traduction texte Français en morse
         // Vérification qu'un message à traduire à bien été renseigné
         if (isset($_POST["message"]) && !empty($_POST["message"])) {
             $chaine = $_POST['message'];
@@ -82,7 +157,7 @@ $alphabetMorse = [
             }
 
             echo implode('', $caracteres);
-
+            
         } else {
             echo "Veuillez renseigner un texte à traduire";
         }
