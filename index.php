@@ -11,14 +11,30 @@
 </head>
 <body>
     <main>
-        <form class="" action="">
+        <form action="">
             <div>
-                <textarea name="" id=""></textarea>
-                <button>Convertir en texte</button>    
+                <label for="message">Votre code Morse à traduire en texte</label>
+                <textarea 
+                    id="messageMorse" 
+                    name="messageMorse" 
+                    rows="10" 
+                    cols="200" 
+                    placeholder="votre message ici"
+                    maxlength="500"
+                ></textarea>
+                <input type="button" name="buttonMorse" value="Traduire en texte">    
             </div>
             <div>
-                <textarea name="" id=""></textarea>
-                <button>Convertir en Morse</button>        
+                <label for="message">Votre message à traduire en Morse</label>
+                <textarea 
+                    id="message" 
+                    name="message" 
+                    rows="10" 
+                    cols="200" 
+                    placeholder="votre message ici"
+                    maxlength="500"
+                ></textarea>
+                <input type="button" name="button" value="Traduire en Morse">
             </div>
         </form>
     </main>    
