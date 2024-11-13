@@ -1,33 +1,32 @@
 <?php
 
 $alphabetMorse = [
-    'A (a)' => '.-',
-    'B (b)' => '-...',
-    'C (c)' => '-.-.',
-    'D (d)' => '-..',
-    'E (e)' => '.',
-    'F (f)' => '..-.',
-    'G (g)' => '--.',
-    'H (h)' => '....',
-    'I (i)' => '..',
-    'J (j)' => '.---',
-    'K (k)' => '-.-',
-    'L (l)' => '.-..',
-    'M (m)' => '--',
-    'N (n)' => '-.',
-    'O (o)' => '---',
-    'P (p)' => '.--.',
-    'Q (q)' => '--.-',
-    'R (r)' => '.-.',
-    'S (s)' => '...',
-    'T (t)' => '-',
-    'U (u)' => '..-',
-    'V (v)' => '...-',
-    'W (w)' => '.--',
-    'X (x)' => '-..-',
-    'Y (y)' => '-.--',
-    'Z (z)' => '--..',
-
+    'A' => '.-',
+    'B' => '-...',
+    'C' => '-.-.',
+    'D' => '-..',
+    'E' => '.',
+    'F' => '..-.',
+    'G' => '--.',
+    'H' => '....',
+    'I' => '..',
+    'J' => '.---',
+    'K' => '-.-',
+    'L' => '.-..',
+    'M' => '--',
+    'N' => '-.',
+    'O' => '---',
+    'P' => '.--.',
+    'Q' => '--.-',
+    'R' => '.-.',
+    'S' => '...',
+    'T' => '-',
+    'U' => '..-',
+    'V' => '...-',
+    'W' => '.--',
+    'X' => '-..-',
+    'Y' => '-.--',
+    'Z' => '--..',
     0 => '-----',
     1 => '.----',
     2 => '..---',
@@ -38,7 +37,6 @@ $alphabetMorse = [
     7 => '--...',
     8 => '---..',
     9 => '----.',
-
     '.' => '.-.-.-',
     ',' => '--..--',
     '?' => '..--..',
@@ -57,14 +55,8 @@ $alphabetMorse = [
     '"' => '.-..-.',
     '$' => '...-..-',
     '@' => '.--.-.',
-
+    ' ' => "/"
 ];
-// var_dump($alphabetMorse);
-// echo "<br>";
-
-echo "<pre>";
-print_r($alphabetMorse);
-echo "</pre>";
 
 ?>
 <!DOCTYPE html>
@@ -73,11 +65,30 @@ echo "</pre>";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convertisseur Morse</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <body>
     <main>
-        <form action="">
+        <?php
+
+        // Vérification qu'un message à traduire à bien été renseigné
+        if (isset($_POST["message"]) && !empty($_POST["message"])) {
+            $chaine = $_POST['message'];
+            $chaineDecoupee = str_split($chaine);
+
+            // On boucle sur chaque caractère de la chaîne découpée
+            foreach ($chaineDecoupee as $value) {
+                $caracteres[] = $alphabetMorse[strtoupper($value)];
+            }
+
+            echo implode('', $caracteres);
+
+        } else {
+            echo "Veuillez renseigner un texte à traduire";
+        }
+
+        ?>
+        <form action="" method="POST">
             <div>
                 <label for="message">Votre code Morse à traduire en texte</label>
                 <textarea 
@@ -88,7 +99,7 @@ echo "</pre>";
                     placeholder="votre code morse à traduire en texte"
                     maxlength="500"
                 ></textarea>
-                <input type="button" name="buttonMorse" value="Traduire en texte">    
+                <input type="submit" name="buttonMorse" value="Traduire en texte">    
             </div>
             <div>
                 <label for="message">Votre message à traduire en Morse</label>
@@ -100,7 +111,7 @@ echo "</pre>";
                     placeholder="votre message à traduire en morse"
                     maxlength="500"
                 ></textarea>
-                <input type="button" name="button" value="Traduire en Morse">
+                <input type="submit" name="button" value="Traduire en Morse">
             </div>
         </form>
     </main>    
