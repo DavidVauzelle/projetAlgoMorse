@@ -129,25 +129,26 @@ $alphabetMorse = [
 <body>
     <main>
         <?php
+        // Code morse à traduire pour le test : -... --- -. .--- --- ..- .-. -.. .- ...- .. -.. -.-.-----.
 
         // Traduction d'un code morse en texte Français
         // Vérification qu'un message à traduire à bien été renseigné
         if (isset($_POST["messageMorse"]) && !empty($_POST["messageMorse"])) {
             $code = $_POST['messageMorse'];
-            $codeDecoupe = explode('/', $code);
+            $codeDecoupeMot = explode(' ', $code);
 
-            print_r($codeDecoupe);
+            // print_r($codeDecoupeMot);
 
+            // On boucle sur chaque caractère de la chaîne découpée
+            foreach ($codeDecoupeMot as $value) {
+                $caracteres[] = $morseAlphabet[strtoupper($value)];
+            }
             
-        } else {
-            // echo "Veuillez renseigner un texte à traduire";
-        }
-
-        // -...----..------..-.-./-...-...-..-../...-.-..---....-...-.../-.-.-----.
-
-        // Traduction texte Français en morse
-        // Vérification qu'un message à traduire à bien été renseigné
-        if (isset($_POST["message"]) && !empty($_POST["message"])) {
+            echo implode( '', $caracteres);
+            
+            // Traduction texte Français en morse
+            // Vérification qu'un message à traduire à bien été renseigné
+            } elseif (isset($_POST["message"]) && !empty($_POST["message"])) {
             $chaine = $_POST['message'];
             $chaineDecoupee = str_split($chaine);
 
