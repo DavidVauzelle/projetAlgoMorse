@@ -1,63 +1,4 @@
 <?php
-// Tableau morse --> Français
-$morseAlphabet = [
-    '.-' => 'A',
-    '-...' => 'B',
-    '-.-.' => 'C',
-    '-..' => 'D',
-    '.' => 'E',
-    '..-.' => 'F',
-    '--.' => 'G',
-    '....' => 'H',
-    '..' => 'I',
-    '.---' => 'J',
-    '-.-' => 'K',
-    '.-..' => 'L',
-    '--' => 'M',
-    '-.' => 'N',
-    '---' => 'O',
-    '.--.' => 'P',
-    '--.-' => 'Q',
-    '.-.' => 'R',
-    '...' => 'S',
-    '-' => 'T',
-    '..-' => 'U',
-    '...-' => 'V',
-    '.--' => 'W',
-    '-..-' => 'X',
-    '-.--' => 'Y',
-    '--..' => 'Z',
-    '-----' => 0,
-    '.----' => 1,
-    '..---' => 2,
-    '...--' => 3,
-    '....-' => 4,
-    '.....' => 5,
-    '-....' => 6,
-    '--...' => 7,
-    '---..' => 8,
-    '----.' => 9,
-    '.-.-.-' => '.',
-    '--..--' => ',',
-    '..--..' => '?',
-    '.----.' => '\'',
-    '-.-.-----.' => '!',
-    '-..-.' => '/',
-    '-.--.' => '(',
-    '-.--.-' => ')',
-    '.-...' => '&',
-    '---...' => ':',
-    '-.-.-.' => ';',
-    '-...-' => '=',
-    '.-.-.' => '+',
-    '-....-' => '-',
-    '..--.-' => '_',
-    '.-..-.' => '"',
-    '...-..-' => '$',
-    '.--.-.' => '@',
-    "/" => ' ',
-];
-
 // Tableau Français --> morse
 $alphabetMorse = [
     'A' => '.-',
@@ -141,10 +82,10 @@ $alphabetMorse = [
 
             // On boucle sur chaque caractère de la chaîne découpée
             foreach ($codeDecoupeMot as $value) {
-                $caracteres[] = $morseAlphabet[strtoupper($value)];
+                $caracteres[] = array_search($value, $alphabetMorse);
             }
             
-            echo implode( '', $caracteres);
+            echo strtolower(implode('', $caracteres));
             
             // Traduction texte Français en morse
             // Vérification qu'un message à traduire à bien été renseigné
@@ -157,7 +98,7 @@ $alphabetMorse = [
                 $caracteres[] = $alphabetMorse[strtoupper($value)];
             }
 
-            echo implode('', $caracteres);
+            echo implode(' ', $caracteres);
             
         } else {
             echo "Veuillez renseigner un texte à traduire";
